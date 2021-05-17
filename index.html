@@ -1,0 +1,103 @@
+<! DOCTYPE html >
+< html  lang = " en " >
+< cabeça >
+    < meta  charset = " UTF-8 " >
+    < meta  http-equiv = " X-UA-Compatible " content = " IE = edge " >
+    < meta  name = " viewport " content = " width = device-width, initial-scale = 1.0 " >
+    < título > Jogo da Cobrinha </ title >
+</ head >
+< corpo >
+    < canvas  id = " stage " width = " 600 " height = " 600 " > </ canvas >
+    < script  type = " text / javascript " >
+        janela . onload  =  function ( ) {
+
+            var  stage  =  document . getElementById ( "estágio" ) ; // declara a variável do palco
+            var  ctx  =  estágio . getContext ( "2d" ) ;
+            documento . addEventListener ( "keydown" ,  keyPush ) ;
+            setInterval ( jogo ,  85 ) ;  
+
+            const  vel  =  1 ;
+
+            var  vx  =  vy  =  0 ;
+            var  px  =  10 ; // posiçãocabeçada cobra
+            var  py  =  15 ; // posição cauda da cobra
+            var  tp  =  30 ; // tamanho da peça
+            var  qp  =  20 ; // quantidade de peças
+            var  ax = ay = 15 ;
+
+            var  trail  =  [ ] ;
+            cauda  =  5 ;
+
+             jogo de funções ( ) {
+                px  + =  vx ;
+                py  + =  vy ;
+
+                if  ( px  <  0 ) {
+                    px  =  qp - 1
+                }
+                if ( px  >  qp - 1 ) {
+                    px  =  0 ;
+                }
+
+                if  ( py  <  0 ) {
+                    py  =  qp - 1 ;
+                }
+
+                if  ( py  >  qp - 1 ) {
+                    py  =  0 ;
+                }  
+
+
+                ctx . fillStyle  =  "preto" ;
+                ctx . fillRect ( 0 , 0 ,  palco . largura ,  palco . altura ) ;
+
+                ctx  . fillStyle  =  "vermelho" ;
+                ctx . fillRect ( ax * tp ,  ay * tp ,  tp ,  tp ) ;
+
+                ctx . fillStyle  =  "cinza" ;
+                para ( var  i  =  0 ;  i  <  fuga . comprimento ;  i ++ )  {
+                    ctx . fillRect ( trilha [ i ] . x * tp ,  trilha [ i ] . y * tp ,  tp - 1 ,  tp - 1 ) ;
+                    if  ( trilha [ i ] . x  ==  px  &&  trilha [ i ] . y  ==  py ) {
+                        vx  =  vy  =  0 ;
+                        cauda  =  5 ;
+                    }
+                }    
+                trilha . push ( { x : px ,  y : py  } )
+                while ( trilha . comprimento  >  cauda ) {
+                    trilha . shift ( ) ;
+                }
+                if  ( ax == px  &&  ay == py ) {
+                    tail ++ ;
+                    machado  =  matemática . chão ( matemática . aleatório ( ) * qp )
+                    ay  =  matemática . chão ( matemática . aleatório ( ) * qp )
+                }
+            }
+            function  keyPush ( event ) {
+
+                switch  ( event . keyCode ) {
+                    caso  37 :
+                        vx  =  - vel ;
+                        vy  =  0
+                    pausa ;
+                    caso  38 :
+                        vx  =  0 ;
+                        vy  =  - vel ;
+                    pausa ;
+                    caso  39 :
+                        vx  =  vel ;
+                        vy  =  0 ;
+                    pausa ;
+                    caso  40 :
+                        vx  =  0 ;
+                        vy  =  vel ;
+                    pausa ;
+                    padrão :
+                    pausa
+
+                }
+
+            }
+        }
+    </ script >
+</ body >
+</ html > 
